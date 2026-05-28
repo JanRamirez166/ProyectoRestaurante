@@ -9,9 +9,16 @@ namespace PL.Controllers
     public class RestauranteController : Controller
     {
         // GET: Restaurante
-        public ActionResult Index()
+        public ActionResult Restaurantes()
         {
             return View();
+        }
+
+        public ActionResult Formulario() 
+        {
+            ML.Restaurante restaurante = new ML.Restaurante();
+
+            return View(restaurante);
         }
     }
 }
