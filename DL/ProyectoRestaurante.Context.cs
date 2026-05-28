@@ -12,6 +12,8 @@ namespace DL
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class ProyectoRestauranteEntities : DbContext
     {
@@ -25,5 +27,107 @@ namespace DL
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Restaurante> Restaurantes { get; set; }
+    
+        public virtual int Actualizar(Nullable<int> idRestaurante, string nombre, byte[] imagen, Nullable<System.TimeSpan> horaApertura, Nullable<System.TimeSpan> horaCierre, string descripcion, string telefono, string correo, Nullable<bool> estatus)
+        {
+            var idRestauranteParameter = idRestaurante.HasValue ?
+                new ObjectParameter("IdRestaurante", idRestaurante) :
+                new ObjectParameter("IdRestaurante", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var imagenParameter = imagen != null ?
+                new ObjectParameter("Imagen", imagen) :
+                new ObjectParameter("Imagen", typeof(byte[]));
+    
+            var horaAperturaParameter = horaApertura.HasValue ?
+                new ObjectParameter("HoraApertura", horaApertura) :
+                new ObjectParameter("HoraApertura", typeof(System.TimeSpan));
+    
+            var horaCierreParameter = horaCierre.HasValue ?
+                new ObjectParameter("HoraCierre", horaCierre) :
+                new ObjectParameter("HoraCierre", typeof(System.TimeSpan));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("Correo", correo) :
+                new ObjectParameter("Correo", typeof(string));
+    
+            var estatusParameter = estatus.HasValue ?
+                new ObjectParameter("Estatus", estatus) :
+                new ObjectParameter("Estatus", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Actualizar", idRestauranteParameter, nombreParameter, imagenParameter, horaAperturaParameter, horaCierreParameter, descripcionParameter, telefonoParameter, correoParameter, estatusParameter);
+        }
+    
+        public virtual int Agregar(string nombre, byte[] imagen, Nullable<System.TimeSpan> horaApertura, Nullable<System.TimeSpan> horaCierre, string descripcion, string telefono, string correo, Nullable<bool> estatus)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var imagenParameter = imagen != null ?
+                new ObjectParameter("Imagen", imagen) :
+                new ObjectParameter("Imagen", typeof(byte[]));
+    
+            var horaAperturaParameter = horaApertura.HasValue ?
+                new ObjectParameter("HoraApertura", horaApertura) :
+                new ObjectParameter("HoraApertura", typeof(System.TimeSpan));
+    
+            var horaCierreParameter = horaCierre.HasValue ?
+                new ObjectParameter("HoraCierre", horaCierre) :
+                new ObjectParameter("HoraCierre", typeof(System.TimeSpan));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("Correo", correo) :
+                new ObjectParameter("Correo", typeof(string));
+    
+            var estatusParameter = estatus.HasValue ?
+                new ObjectParameter("Estatus", estatus) :
+                new ObjectParameter("Estatus", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Agregar", nombreParameter, imagenParameter, horaAperturaParameter, horaCierreParameter, descripcionParameter, telefonoParameter, correoParameter, estatusParameter);
+        }
+    
+        public virtual int Eliminar(Nullable<int> idRestaurante)
+        {
+            var idRestauranteParameter = idRestaurante.HasValue ?
+                new ObjectParameter("IdRestaurante", idRestaurante) :
+                new ObjectParameter("IdRestaurante", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Eliminar", idRestauranteParameter);
+        }
+    
+        public virtual ObjectResult<GetAll_Result> GetAll()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAll_Result>("GetAll");
+        }
+    
+        public virtual ObjectResult<GetById_Result> GetById(Nullable<int> idRestaurante)
+        {
+            var idRestauranteParameter = idRestaurante.HasValue ?
+                new ObjectParameter("IdRestaurante", idRestaurante) :
+                new ObjectParameter("IdRestaurante", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetById_Result>("GetById", idRestauranteParameter);
+        }
     }
 }

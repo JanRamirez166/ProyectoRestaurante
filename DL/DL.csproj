@@ -54,6 +54,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="GetAll_Result.cs">
+      <DependentUpon>ProyectoRestaurante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetById_Result.cs">
+      <DependentUpon>ProyectoRestaurante.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProyectoRestaurante.Context.cs">
       <AutoGen>True</AutoGen>
@@ -69,6 +75,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProyectoRestaurante.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Restaurante.cs">
+      <DependentUpon>ProyectoRestaurante.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

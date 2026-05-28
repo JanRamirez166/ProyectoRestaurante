@@ -4,20 +4,174 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ProyectoRestauranteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="ProyectoRestauranteModelStoreContainer" />
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="ProyectoRestauranteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Restaurante">
+          <Key>
+            <PropertyRef Name="IdRestaurante" />
+          </Key>
+          <Property Name="IdRestaurante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Imagen" Type="varbinary(max)" />
+          <Property Name="HorarioApertura" Type="time" Precision="7" />
+          <Property Name="HorarioCierre" Type="time" Precision="7" />
+          <Property Name="Descripcion" Type="varchar(max)" />
+          <Property Name="Telefono" Type="varchar" MaxLength="15" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" />
+          <Property Name="Estatus" Type="bit" />
+        </EntityType>
+        <Function Name="Actualizar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdRestaurante" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Imagen" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="HoraApertura" Type="time" Mode="In" />
+          <Parameter Name="HoraCierre" Type="time" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="Estatus" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="Agregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Imagen" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="HoraApertura" Type="time" Mode="In" />
+          <Parameter Name="HoraCierre" Type="time" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="Estatus" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="Eliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdRestaurante" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdRestaurante" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="ProyectoRestauranteModelStoreContainer">
+          <EntitySet Name="Restaurante" EntityType="Self.Restaurante" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProyectoRestauranteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="ProyectoRestauranteEntities" annotation:LazyLoadingEnabled="true" />
+        <EntityContainer Name="ProyectoRestauranteEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Restaurantes" EntityType="ProyectoRestauranteModel.Restaurante" />
+          <FunctionImport Name="Actualizar">
+            <Parameter Name="IdRestaurante" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Imagen" Mode="In" Type="Binary" />
+            <Parameter Name="HoraApertura" Mode="In" Type="Time" />
+            <Parameter Name="HoraCierre" Mode="In" Type="Time" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="Estatus" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="Agregar">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Imagen" Mode="In" Type="Binary" />
+            <Parameter Name="HoraApertura" Mode="In" Type="Time" />
+            <Parameter Name="HoraCierre" Mode="In" Type="Time" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="Estatus" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="Eliminar">
+            <Parameter Name="IdRestaurante" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetAll" ReturnType="Collection(ProyectoRestauranteModel.GetAll_Result)" />
+          <FunctionImport Name="GetById" ReturnType="Collection(ProyectoRestauranteModel.GetById_Result)">
+            <Parameter Name="IdRestaurante" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Restaurante">
+          <Key>
+            <PropertyRef Name="IdRestaurante" />
+          </Key>
+          <Property Name="IdRestaurante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="HorarioApertura" Type="Time" Precision="7" />
+          <Property Name="HorarioCierre" Type="Time" Precision="7" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Estatus" Type="Boolean" />
+        </EntityType>
+        <ComplexType Name="GetAll_Result">
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="Binary" Name="Imagen" Nullable="true" />
+          <Property Type="Time" Name="HorarioCierre" Nullable="true" />
+          <Property Type="Time" Name="HorarioApertura" Nullable="true" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="String" Name="Telefono" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="Estatus" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetById_Result">
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="Binary" Name="Imagen" Nullable="true" />
+          <Property Type="Time" Name="HorarioCierre" Nullable="true" />
+          <Property Type="Time" Name="HorarioApertura" Nullable="true" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="String" Name="Telefono" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="Estatus" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ProyectoRestauranteModelStoreContainer" CdmEntityContainer="ProyectoRestauranteEntities" />
+        <EntityContainerMapping StorageEntityContainer="ProyectoRestauranteModelStoreContainer" CdmEntityContainer="ProyectoRestauranteEntities" >
+          <EntitySetMapping Name="Restaurantes">
+            <EntityTypeMapping TypeName="ProyectoRestauranteModel.Restaurante">
+              <MappingFragment StoreEntitySet="Restaurante">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="HorarioCierre" ColumnName="HorarioCierre" />
+                <ScalarProperty Name="HorarioApertura" ColumnName="HorarioApertura" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdRestaurante" ColumnName="IdRestaurante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Actualizar" FunctionName="ProyectoRestauranteModel.Store.Actualizar" />
+          <FunctionImportMapping FunctionImportName="Agregar" FunctionName="ProyectoRestauranteModel.Store.Agregar" />
+          <FunctionImportMapping FunctionImportName="Eliminar" FunctionName="ProyectoRestauranteModel.Store.Eliminar" />
+          <FunctionImportMapping FunctionImportName="GetAll" FunctionName="ProyectoRestauranteModel.Store.GetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoRestauranteModel.GetAll_Result">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="HorarioCierre" ColumnName="HorarioCierre" />
+                <ScalarProperty Name="HorarioApertura" ColumnName="HorarioApertura" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetById" FunctionName="ProyectoRestauranteModel.Store.GetById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoRestauranteModel.GetById_Result">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="HorarioCierre" ColumnName="HorarioCierre" />
+                <ScalarProperty Name="HorarioApertura" ColumnName="HorarioApertura" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
