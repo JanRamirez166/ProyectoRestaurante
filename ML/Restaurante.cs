@@ -11,8 +11,8 @@ namespace ML
         public int IdRestaurante { get; set; }
         public string Nombre { get; set; }
         public byte[] Imagen { get; set; }
-        public DateTime HorarioApertura { get; set; }
-        public DateTime HorarioCierre { get; set; }
+        public TimeSpan HorarioApertura { get; set; }
+        public TimeSpan HorarioCierre { get; set; }
         public string Descripcion { get; set; }
         public string Telefono { get; set; }
         public string Correo { get; set; }
