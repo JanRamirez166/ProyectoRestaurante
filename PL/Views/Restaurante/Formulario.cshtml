@@ -37,15 +37,15 @@
 
                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
                     <label asp-for="HorarioApertura" class="form-label"></label>
-                    <input asp-for="HorarioApertura" type="time" class="form-control" />
+                    <input asp-for="HorarioApertura" type="time" class="form-control" name="HorarioApertura"/>
                 </div>
 
                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
                     <label asp-for="HorarioCierre" class="form-label"></label>
-                    <input asp-for="HorarioCierre" type="time" class="form-control" />
+                    <input asp-for="HorarioCierre" type="time" class="form-control" name="HorarioCierre"/>
                 </div>
 
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                @*<div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12">
                     <label for="imagen" class="form-label">Ingresa el logo del restaurante</label>
                     <input class="form-control" type="file" id="InputImagen" name="imagen" onchange="ValidarImagen(this)">
                 </div>
@@ -63,7 +63,7 @@
                     {
                         <img src="" id="imagenRestaurante" width="200" height="200" class="rounded-2 rounded-circle border border-2 mt-3" />
                     }
-                </div>
+                </div>*@
             </div>
         </div>
 

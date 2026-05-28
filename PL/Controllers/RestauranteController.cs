@@ -22,7 +22,7 @@ namespace PL.Controllers
         }
 
         [HttpPost]
-        public ActionResult Formulario(ML.Restaurante restaurante, HttpPostedFileBase Imagen) 
+        public ActionResult Formulario(ML.Restaurante restaurante) 
         {
 
             return View(restaurante);
