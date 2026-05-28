@@ -47,21 +47,21 @@
 
                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12">
                     <label for="imagen" class="form-label">Ingresa el logo del restaurante</label>
-                    <input class="form-control" type="file" id="imagen" name="Imagen" onchange="ValidarImagen(this)">
+                    <input class="form-control" type="file" id="InputImagen" name="imagen" onchange="ValidarImagen(this)">
                 </div>
 
                 <div class="col-xxl-12 col-xl-4 col-lg-4 col-md-6 col-sm-12">
                     @if (Model.Imagen != null)
                     {
                         <img src="data:image/*;base64,@Convert.ToBase64String(Model.Imagen)"
-                             id="imgUsuario"
+                             id="imagenRestaurante"
                              width="200"
                              height="200"
                              class="rounded-2 rounded-circle border border-2 mt-3" />
                     }
                     else
                     {
-                        <img src="~/Content/Imagenes/usuarioDefecto.png" id="imgUsuario" width="200" height="200" class="rounded-2 rounded-circle border border-2 mt-3" />
+                        <img src="" id="imagenRestaurante" width="200" height="200" class="rounded-2 rounded-circle border border-2 mt-3" />
                     }
                 </div>
             </div>
@@ -93,13 +93,13 @@
             let reader = new FileReader();
 
             reader.onloadend = function () {
-                $('#imgUsuario').attr("src",reader.result)
+                $('#imagenRestaurante').attr("src",reader.result)
             }
             reader.readAsDataURL(file)
         } else {
             alert('No es una imagen revisalo');
-            $('#inputUsuarioImagen').val('');
-            $('#imgUsuario').attr("src", "")
+            $('#InputImagen').val('');
+            $('#imagenRestaurante').attr("src", "")
         }
     }
 

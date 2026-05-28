@@ -20,5 +20,13 @@ namespace PL.Controllers
 
             return View(restaurante);
         }
+
+        [HttpPost]
+        public ActionResult Formulario(ML.Restaurante restaurante, HttpPostedFileBase Imagen) 
+        {
+
+            return View(restaurante);
+        }
+           
     }
 }
