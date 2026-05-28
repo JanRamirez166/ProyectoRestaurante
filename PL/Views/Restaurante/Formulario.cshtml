@@ -1,0 +1,106 @@
+﻿@model  ML.Restaurante
+
+@{
+    ViewBag.Title = "Formulario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Formulario</h2>
+
+<div class="container">
+    @using (Html.BeginForm("Formulario", "Restaurante", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(model => model.IdRestaurante);
+
+        <div class="card border-info mb-3 shadow mb-4" style="max-width: 100%;">
+            <div class="card-header">Información</div>
+            <div class="row card-body text-dark">
+
+                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                    @Html.LabelFor(model => model.Nombre, "Nombre del restaurante")
+                    @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+
+                </div>
+                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                    @Html.LabelFor(model => model.Telefono, "Telefono")
+                    @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control" })
+                </div>
+                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                    @Html.LabelFor(model => model.Correo, "Correo")
+                    @Html.TextBoxFor(model => model.Correo, new { @class = "form-control" })
+                </div>
+
+                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                    @Html.LabelFor(model => model.Descripcion, "Descripcion")
+                    @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control" })
+                </div>
+
+                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                    <label asp-for="HorarioApertura" class="form-label"></label>
+                    <input asp-for="HorarioApertura" type="time" class="form-control" />
+                </div>
+
+                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                    <label asp-for="HorarioCierre" class="form-label"></label>
+                    <input asp-for="HorarioCierre" type="time" class="form-control" />
+                </div>
+
+                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                    <label for="imagen" class="form-label">Ingresa el logo del restaurante</label>
+                    <input class="form-control" type="file" id="InputImagen" name="imagen" onchange="ValidarImagen(this)">
+                </div>
+
+                <div class="col-xxl-12 col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                    @if (Model.Imagen != null)
+                    {
+                        <img src="data:image/*;base64,@Convert.ToBase64String(Model.Imagen)"
+                             id="imagenRestaurante"
+                             width="200"
+                             height="200"
+                             class="rounded-2 rounded-circle border border-2 mt-3" />
+                    }
+                    else
+                    {
+                        <img src="" id="imagenRestaurante" width="200" height="200" class="rounded-2 rounded-circle border border-2 mt-3" />
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <button type="submit" class="btn btn-success mt-3" id="Boton">
+                    <i class="bi bi-floppy"></i>
+                    GUARDAR
+                </button>
+            </div>
+        </div>
+    }
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+
+<script src="~/Scripts/UsuarioValidaciones/UsuarioForm.js"></script>
+
+<script>
+
+    function ValidarImagen(input) {
+        let nombre = input.files[0].name;
+        let extension = nombre.split('.')[1];
+
+        if (extension == 'jpg' || extension == 'png' || extension == 'jpeg') {
+            let file = input.files[0];
+            let reader = new FileReader();
+
+            reader.onloadend = function () {
+                $('#imagenRestaurante').attr("src",reader.result)
+            }
+            reader.readAsDataURL(file)
+        } else {
+            alert('No es una imagen revisalo');
+            $('#InputImagen').val('');
+            $('#imagenRestaurante').attr("src", "")
+        }
+    }
+
+</script>
