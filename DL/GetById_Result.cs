@@ -13,6 +13,7 @@ namespace DL
     
     public partial class GetById_Result
     {
+        public int IdRestaurante { get; set; }
         public string Nombre { get; set; }
         public byte[] Imagen { get; set; }
         public Nullable<System.TimeSpan> HorarioCierre { get; set; }

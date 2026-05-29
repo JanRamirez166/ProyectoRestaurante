@@ -9,7 +9,7 @@ namespace BL
     public class Restaurante
     {
 
-        public static ML.Result GetAll(ML.Restaurante restaurante)
+        public static ML.Result GetAll()
         {
 
             ML.Result result = new ML.Result();
@@ -30,6 +30,7 @@ namespace BL
                         {
                             ML.Restaurante restauranteBD = new ML.Restaurante();
 
+                            restauranteBD.IdRestaurante = item.IdRestaurante;
                             restauranteBD.Nombre = item.Nombre;
                             restauranteBD.Imagen = item.Imagen;
                             restauranteBD.HorarioCierre = item.HorarioCierre.Value;
@@ -77,6 +78,7 @@ namespace BL
 
                         ML.Restaurante restauranteBD = new ML.Restaurante();
 
+                        restauranteBD.IdRestaurante = query.IdRestaurante;
                         restauranteBD.Nombre = query.Nombre;
                         restauranteBD.Imagen = query.Imagen;
                         restauranteBD.HorarioCierre = query.HorarioCierre.Value;
