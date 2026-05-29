@@ -25,23 +25,32 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (ML.Restaurante rest in @Model.Restaurantes){
-                <tr>
-                    <td><img width="150" src="data:imagen/*;base64,@Convert.ToBase64String(rest.Imagen)" /></td>
-                    <td>@rest.Nombre</td>
-                    <td>@rest.HorarioApertura</td>
-                    <td>@rest.HorarioCierre</td>
-                    <td>@rest.Telefono</td>
-                    <td>@rest.Correo</td>
-                    <td>@rest.Descripcion</td>
-                    <td>@rest.Estatus</td>
-                    <td>
-                        <a href="@Url.Action("Formulario","Restaurante", new { idRestaurante = rest.IdRestaurante })" class="btn btn-sm btn-outline-warning bi bi-pencil-square"></a>
-                        <a href="@Url.Action("Delete","Restaurante", new { idRestaurante = rest.IdRestaurante })" onclick="return confirm('Eliminar el registro')" class="btn btn-sm btn-outline-danger bi bi-person-x"></a>
-                    </td>
-                </tr>
+                @foreach (ML.Restaurante rest in @Model.Restaurantes)
+                {
+                    <tr>
+                        @if (rest.Imagen != null)
+                        {
+                            <td><img width="150" src="data:imagen/*;base64,@Convert.ToBase64String(rest.Imagen)" /></td>
+                        }
+                        else
+                        {
+                            <td>
+                                <img width="150" src="~/Content/Imagen/vector-49-corporate-logos-design-template-set.jpg" /></td>
+                                }
+                            <td>@rest.Nombre</td>
+                            <td>@rest.HorarioApertura</td>
+                            <td>@rest.HorarioCierre</td>
+                            <td>@rest.Telefono</td>
+                            <td>@rest.Correo</td>
+                            <td>@rest.Descripcion</td>
+                            <td>@rest.Estatus</td>
+                            <td>
+                                <a href="@Url.Action("Formulario", "Restaurante", new { idRestaurante = rest.IdRestaurante })" class="btn btn-sm btn-outline-warning bi bi-pencil-square"></a>
+                                <a href="@Url.Action("Delete", "Restaurante", new { idRestaurante = rest.IdRestaurante })" onclick="return confirm('Eliminar el registro')" class="btn btn-sm btn-outline-danger bi bi-person-x"></a>
+                            </td>
+                        </tr>
                     }
-            </tbody>
-        </table>
-    </div>
-</div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
