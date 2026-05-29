@@ -121,7 +121,7 @@ namespace BL
 
                     var query = context.Agregar(restaurante.Nombre, restaurante.Imagen, restaurante.HorarioApertura, restaurante.HorarioCierre, restaurante.Descripcion, restaurante.Telefono, restaurante.Correo, restaurante.Estatus);
 
-                    if (query > 1)
+                    if (query > 0)
                     {
                         result.Correct = true;
                     }
@@ -155,7 +155,7 @@ namespace BL
 
                     var query = context.Actualizar(restaurante.IdRestaurante, restaurante.Nombre, restaurante.Imagen, restaurante.HorarioApertura, restaurante.HorarioCierre, restaurante.Descripcion, restaurante.Telefono, restaurante.Correo, restaurante.Estatus);
 
-                    if (query > 1)
+                    if (query > 0)
                     {
                         result.Correct = true;
                     }

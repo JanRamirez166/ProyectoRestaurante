@@ -27,7 +27,7 @@
             <tbody>
                 @foreach (ML.Restaurante rest in @Model.Restaurantes){
                 <tr>
-                    <td>@*<img width="150" src="data:imagen/*;base64,@Convert.ToBase64String(rest.Imagen)" />*@</td>
+                    <td><img width="150" src="data:imagen/*;base64,@Convert.ToBase64String(rest.Imagen)" /></td>
                     <td>@rest.Nombre</td>
                     <td>@rest.HorarioApertura</td>
                     <td>@rest.HorarioCierre</td>

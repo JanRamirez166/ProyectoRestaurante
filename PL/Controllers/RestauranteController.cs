@@ -54,10 +54,14 @@ namespace PL.Controllers
                     restaurante.Imagen = memoryStream.ToArray();
                 }
             }
-
-
-            return View(restaurante);
-        }
-           
+            if (restaurante.IdRestaurante == 0)
+            {
+                BL.Restaurante.Add(restaurante);
+            }
+            else { 
+                BL.Restaurante.Update(restaurante);
+            }
+            return RedirectToAction("Restaurantes");
+        }      
     }
 }
