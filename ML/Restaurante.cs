@@ -18,7 +18,7 @@ namespace ML
         public string Telefono { get; set; }
         public string Correo { get; set; }
         public bool Estatus { get; set; }
-        public List<Object> Restaurantes { get; set; }
+        public List<object> Restaurantes { get; set; }
     }
 
 }
