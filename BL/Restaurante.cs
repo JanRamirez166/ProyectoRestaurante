@@ -189,7 +189,7 @@ namespace BL
 
                     var query = context.Eliminar(idRestaurante);
 
-                    if (query > 1)
+                    if (query > 0)
                     {
                         result.Correct = true;
                     }

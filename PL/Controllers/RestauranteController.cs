@@ -27,11 +27,14 @@ namespace PL.Controllers
             if (!result.Correct) ViewBag.ErrorDelete("No se elimino el registro");
                 return RedirectToAction("Restaurantes");
         }
-        public ActionResult Formulario() 
+        [HttpGet]
+        public ActionResult Formulario(int? idRestaurante) 
         {
-
             ML.Restaurante restaurante = new ML.Restaurante();
-
+            if (idRestaurante != null) {
+                ML.Result result = BL.Restaurante.GetById(idRestaurante.Value);
+                if(result.Correct)restaurante=(ML.Restaurante)result.Object;
+            }
             return View(restaurante);
         }
 
