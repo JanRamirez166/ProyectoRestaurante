@@ -78,7 +78,7 @@
             <Parameter Name="Estatus" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="Eliminar">
-            <Parameter Name="IdRestaurante" Mode="In" Type="Int32" />
+          <Parameter Name="IdRestaurante" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetAll" ReturnType="Collection(ProyectoRestauranteModel.GetAll_Result)" />
           <FunctionImport Name="GetById" ReturnType="Collection(ProyectoRestauranteModel.GetById_Result)">
@@ -100,6 +100,7 @@
           <Property Name="Estatus" Type="Boolean" />
         </EntityType>
         <ComplexType Name="GetAll_Result">
+          <Property Type="Int32" Name="IdRestaurante" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
           <Property Type="Binary" Name="Imagen" Nullable="true" />
           <Property Type="Time" Name="HorarioCierre" Nullable="true" />
@@ -110,6 +111,7 @@
           <Property Type="Boolean" Name="Estatus" Nullable="true" />
         </ComplexType>
         <ComplexType Name="GetById_Result">
+          <Property Type="Int32" Name="IdRestaurante" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
           <Property Type="Binary" Name="Imagen" Nullable="true" />
           <Property Type="Time" Name="HorarioCierre" Nullable="true" />
@@ -146,6 +148,7 @@
           <FunctionImportMapping FunctionImportName="GetAll" FunctionName="ProyectoRestauranteModel.Store.GetAll">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ProyectoRestauranteModel.GetAll_Result">
+                <ScalarProperty Name="IdRestaurante" ColumnName="IdRestaurante" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Imagen" ColumnName="Imagen" />
                 <ScalarProperty Name="HorarioCierre" ColumnName="HorarioCierre" />
@@ -160,6 +163,7 @@
           <FunctionImportMapping FunctionImportName="GetById" FunctionName="ProyectoRestauranteModel.Store.GetById">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ProyectoRestauranteModel.GetById_Result">
+                <ScalarProperty Name="IdRestaurante" ColumnName="IdRestaurante" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Imagen" ColumnName="Imagen" />
                 <ScalarProperty Name="HorarioCierre" ColumnName="HorarioCierre" />
