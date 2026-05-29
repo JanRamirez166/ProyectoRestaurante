@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -12,11 +13,15 @@ namespace PL.Controllers
         // GET: Restaurante
         public ActionResult Restaurantes()
         {
-            return View();
+            ML.Restaurante restaurante = new ML.Restaurante();
+            ML.Result resultGetAll = BL.Restaurante.GetAll();
+            restaurante.Restaurantes = resultGetAll.Objects;
+            return View(restaurante);
         }
 
         public ActionResult Formulario() 
         {
+
             ML.Restaurante restaurante = new ML.Restaurante();
 
             return View(restaurante);

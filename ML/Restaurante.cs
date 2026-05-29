@@ -11,14 +11,12 @@ namespace ML
         public int IdRestaurante { get; set; }
         public string Nombre { get; set; }
         public byte[] Imagen {  get; set; }
-        public byte[] Imagen { get; set; }
         public TimeSpan HorarioApertura { get; set; }
         public TimeSpan HorarioCierre { get; set; }
         public string Descripcion {  get; set; }
-        public string Descripcion { get; set; }
         public string Telefono { get; set; }
         public string Correo { get; set; }
-        public Boolean Estatus { get; set; }
         public bool Estatus { get; set; }
+        public List<Object> Restaurantes { get; set; }
     }
 }

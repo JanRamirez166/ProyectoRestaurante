@@ -9,7 +9,7 @@ namespace BL
     public class Restaurante
     {
 
-        public static ML.Result GetAll(ML.Restaurante restaurante)
+        public static ML.Result GetAll()
         {
 
             ML.Result result = new ML.Result();
