@@ -35,7 +35,10 @@
                     <td>@rest.Correo</td>
                     <td>@rest.Descripcion</td>
                     <td>@rest.Estatus</td>
-                    <td><a href="@Url.Action("Fromulario","Restaurante", new { idUsuario = rest.IdRestaurante })" class="btn btn-sm btn-outline-warning bi bi-pencil-square"></a></td>
+                    <td>
+                        <a href="@Url.Action("Formulario","Restaurante", new { idRestaurante = rest.IdRestaurante })" class="btn btn-sm btn-outline-warning bi bi-pencil-square"></a>
+                        <a href="@Url.Action("Delete","Restaurante", new { idRestaurante = rest.IdRestaurante })" onclick="return confirm('Eliminar el registro')" class="btn btn-sm btn-outline-danger bi bi-person-x"></a>
+                    </td>
                 </tr>
                     }
             </tbody>

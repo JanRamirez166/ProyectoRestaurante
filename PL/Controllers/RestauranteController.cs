@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
 using System.IO;
@@ -11,6 +12,7 @@ namespace PL.Controllers
     public class RestauranteController : Controller
     {
         // GET: Restaurante
+        [HttpGet]
         public ActionResult Restaurantes()
         {
             ML.Restaurante restaurante = new ML.Restaurante();
@@ -18,7 +20,13 @@ namespace PL.Controllers
             restaurante.Restaurantes = resultGetAll.Objects;
             return View(restaurante);
         }
-
+        [HttpGet]
+        public ActionResult Delete(int idRestaurante)
+        {
+            ML.Result result = BL.Restaurante.Delete(idRestaurante);
+            if (!result.Correct) ViewBag.ErrorDelete("No se elimino el registro");
+                return RedirectToAction("Restaurantes");
+        }
         public ActionResult Formulario() 
         {
 
